@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>n3tman</title>
+  <meta name="description" content="n3tman's projects">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/16892631?v=4&s=64">
+  <style>
+    /* Palette borrowed from vibe-check (light-dark tokens, follows the system theme). */
+    :root {
+      --bg: light-dark(#f7f6f2, #15171c);
+      --surface: light-dark(#ffffff, #1d2027);
+      --text: light-dark(#1b1d22, #e9e7e2);
+      --muted: light-dark(#5a5f6b, #a3a8b4);
+      --border: light-dark(#e2dfd7, #2f333d);
+      --border-strong: light-dark(#cfcbc0, #434956);
+      --accent: light-dark(#0b6e69, #5cc8bd);
+      --accent-soft: light-dark(#dff1ef, #173a38);
+      --focus: light-dark(#1a5fd0, #8ab4ff);
+      --lang-astro: #ff5a03;
+      --shadow-hover: 0 1px 2px light-dark(rgb(30 25 10 / 0.05), rgb(0 0 0 / 0.3)), 0 10px 28px -10px light-dark(rgb(30 25 10 / 0.22), rgb(0 0 0 / 0.6));
+      --radius: 10px;
+      --font: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+      color-scheme: light dark;
+    }
+    @supports not (color: light-dark(#000, #fff)) {
+      :root { --bg: #f7f6f2; --surface: #fff; --text: #1b1d22; --muted: #5a5f6b; --border: #e2dfd7;
+        --border-strong: #cfcbc0; --accent: #0b6e69; --accent-soft: #dff1ef; --focus: #1a5fd0;
+        --shadow-hover: 0 10px 28px -10px rgb(30 25 10 / 0.22); color-scheme: light; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 var(--font); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+
+    header.top { border-bottom: 1px solid var(--border); background: var(--surface); }
+    header.top .wrap { display: flex; align-items: center; gap: 10px; padding-block: 14px; }
+    header.top img { width: 32px; height: 32px; border-radius: 50%; }
+    header.top b { font-size: 15px; }
+
+    .wrap { max-width: 1012px; margin: 0 auto; padding-inline: 24px; }
+    main.wrap { display: grid; grid-template-columns: 256px 1fr; gap: 32px; padding-block: 32px; }
+    @media (max-width: 760px) { main.wrap { grid-template-columns: 1fr; } .avatar { width: 120px !important; } }
+
+    .avatar { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 1px solid var(--border); display: block; }
+    .names h1 { margin: 16px 0 0; font-size: 24px; font-weight: 600; line-height: 1.25; }
+    .names p { margin: 0; color: var(--muted); font-size: 20px; font-weight: 300; }
+    .profile-btn { display: block; margin-top: 16px; padding: 5px 16px; text-align: center; font-weight: 500;
+      color: var(--text); background: var(--surface); border: 1px solid var(--border-strong); border-radius: 6px; }
+    .profile-btn:hover { text-decoration: none; background: var(--accent-soft); }
+
+    h2 { font-size: 16px; font-weight: 400; margin: 0 0 8px; }
+    .repos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .repo { display: flex; flex-direction: column; gap: 8px; padding: 16px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius); transition: box-shadow .15s, border-color .15s; }
+    .repo:hover { box-shadow: var(--shadow-hover); border-color: var(--border-strong); }
+    .repo-head { display: flex; align-items: center; gap: 8px; }
+    .repo-head svg { fill: var(--muted); flex: none; }
+    .repo-head a { font-weight: 600; }
+    .badge { margin-left: auto; padding: 0 7px; font-size: 12px; font-weight: 500; line-height: 18px;
+      color: var(--muted); border: 1px solid var(--border-strong); border-radius: 2em; }
+    .repo p { margin: 0; color: var(--muted); font-size: 12px; flex: 1; }
+    .meta { display: flex; flex-wrap: wrap; gap: 16px; color: var(--muted); font-size: 12px; }
+    .meta span { display: inline-flex; align-items: center; gap: 4px; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--lang-astro); border: 1px solid rgb(0 0 0 / .1); }
+
+    footer { color: var(--muted); font-size: 12px; text-align: center; padding: 24px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <img src="https://avatars.githubusercontent.com/u/16892631?v=4&s=64" alt="">
+      <b>n3tman</b>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <aside>
+      <img class="avatar" src="https://avatars.githubusercontent.com/u/16892631?v=4&s=460" alt="n3tman's avatar">
+      <div class="names">
+        <h1>n3tman</h1>
+      </div>
+      <a class="profile-btn" href="https://github.com/n3tman">View GitHub profile</a>
+    </aside>
+
+    <section>
+      <h2>Projects</h2>
+      <div class="repos">
+        <article class="repo">
+          <div class="repo-head">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
+            <a href="https://n3tman.github.io/vibe-check/">vibe-check</a>
+            <span class="badge">Public</span>
+          </div>
+          <p>The Matrix ecosystem at a glance: clients, servers, bots and bridges by features, activity and AI stance</p>
+          <div class="meta">
+            <span><i class="dot"></i>Astro</span>
+            <a href="https://github.com/n3tman/vibe-check">Source</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>n3tman · hosted on GitHub Pages</footer>
+</body>
+</html>
